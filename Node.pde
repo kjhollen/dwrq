@@ -30,20 +30,17 @@ class Node {
     float theta = atan2 (dy, dx);
     println ("REFLECT: " + m.x  + "," + m.y + " t:" + m.theta % PI + " t':" + theta);
     // is it a vertical intersection?
-    if (abs (m.x - (this.x - this.w/2)) < 1.0)
+    if (abs (m.x - (this.x - this.w/2)) < 1.0  ||  abs (m.x - (this.x + this.w/2)) < 1.0)
     { m.cent_y += 2 * dy;
-      m.theta = PI/2 + (PI/2-theta);
-      println ("VERTICAL L");
-    } else if (abs (m.x - (this.x + this.w/2)) < 1.0) {
-      m.cent_y += 2 * dy;
       m.theta = -theta;
-      println ("VERTICAL R");
-    } else if (abs (m.y - (this.y - this.h/2)) < 1.0){
-      m.theta = -theta;
+      println ("VERTICAL");
+    }
+    else if (abs (m.y - (this.y - this.h/2)) < 1.0){
+      m.theta = PI - theta;
       m.cent_x += 2 * dx;
       println ("HORIZONTAL T: " + m.x  + "," + m.y);
     } else if (abs (m.y - (this.y + this.h/2)) < 1.0) {
-      m.theta = -theta;
+      m.theta = PI - theta;
       m.cent_x += 2 * dx;
       println ("HORIZONTAL B: " + m.x  + "," + m.y);
     }

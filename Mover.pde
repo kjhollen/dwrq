@@ -17,7 +17,7 @@ class Mover {
     this.r = r;
     this.cent_x = x;
     this.cent_y = y;
-    this.theta = 0;
+    this.theta = PI/2;
     this.x = this.cent_x + this.r * cos (this.theta);
     this.y = this.cent_y + this.r * sin (this.theta);
   }
