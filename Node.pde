@@ -34,15 +34,10 @@ class Node {
     { m.cent_y += 2 * dy;
       m.theta = -theta;
       println ("VERTICAL");
-    }
-    else if (abs (m.y - (this.y - this.h/2)) < 1.0){
+    } else if (abs (m.y - (this.y - this.h/2)) < 1.0  ||  abs (m.y - (this.y + this.h/2)) < 1.0){
       m.theta = PI - theta;
       m.cent_x += 2 * dx;
-      println ("HORIZONTAL T: " + m.x  + "," + m.y);
-    } else if (abs (m.y - (this.y + this.h/2)) < 1.0) {
-      m.theta = PI - theta;
-      m.cent_x += 2 * dx;
-      println ("HORIZONTAL B: " + m.x  + "," + m.y);
+      println ("HORIZONTAL: " + m.x  + "," + m.y);
     }
   }
 

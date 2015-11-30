@@ -1,6 +1,6 @@
 
 // Movers, jsut like before!
-Mover[] movers = new Mover[1];
+Mover[] movers = new Mover[2];
 
 // Attractors, just like before!
 Node[] nodes = new Node[1];
@@ -20,7 +20,7 @@ void setup() {
     nodes[i] = new Node (x, y, 100, 100);
     
     for (int j = 0; j < movers.length; j++) {
-      movers[j] = new Mover(64, x /*random(width)*/, y /*random(height)*/);
+      movers[j] = new Mover(64, PI / 2 * j, x /*random(width)*/, y /*random(height)*/);
     }
   }
 }

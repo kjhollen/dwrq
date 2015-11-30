@@ -13,11 +13,11 @@ class Mover {
   float cent_x, cent_y;
   float x, y;
 
-  Mover (float r, float x, float y) {
+  Mover (float r, float t, float x, float y) {
     this.r = r;
     this.cent_x = x;
     this.cent_y = y;
-    this.theta = PI/2;
+    this.theta = t;
     this.x = this.cent_x + this.r * cos (this.theta);
     this.y = this.cent_y + this.r * sin (this.theta);
   }
