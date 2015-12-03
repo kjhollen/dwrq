@@ -12,26 +12,34 @@ class Mover {
   float theta;
   float cent_x, cent_y;
   float x, y;
+  float speed;
+  boolean reflected_last_frame = false;
 
-  Mover (float r, float t, float x, float y) {
+  Mover (float r, float t, float x, float y, Node n) {
     this.r = r;
     this.cent_x = x;
     this.cent_y = y;
     this.theta = t;
     this.x = this.cent_x + this.r * cos (this.theta);
     this.y = this.cent_y + this.r * sin (this.theta);
+    speed = random (-PI/60, PI/60);
+    
+    while (n.overlaps (this)) {
+      this.theta += PI / 60.0;
+      this.x = this.cent_x + this.r * cos (this.theta);
+      this.y = this.cent_y + this.r * sin (this.theta);
+    }
   }
 
   void update () {
-    this.theta += PI / 60.0;
+    this.theta += speed;
     this.x = this.cent_x + this.r * cos (this.theta);
     this.y = this.cent_y + this.r * sin (this.theta);
     
     for (int i = 0  ;  i < nodes.length  ;  i++) {
       Node n = nodes[i];
       if (n.overlaps (this))
-        { n.reflect (this);
-        }
+        n.reflect (this);
     }
   }
 
@@ -39,10 +47,20 @@ class Mover {
   void draw () {
     pushMatrix();
     translate(this.x, this.y);
-    fill(0);
-    stroke(0);
-    strokeWeight(1);
-    ellipse(0,0,3,3);
+    boolean overlaps = false;
+    for (int i = 0  ;  i < nodes.length  ;  i++) {
+      Node n = nodes[i];
+      if (n.overlaps (this))
+        { //println ("" + this + " overlaps " + n);
+          overlaps = true;
+        }
+    }
+    
+    fill(255);
+    stroke(255);
+
+    noStroke ();
+    ellipse(0, 0, 2, 2);
     popMatrix();
   }
 }
